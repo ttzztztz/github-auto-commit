@@ -22,7 +22,8 @@ COPY . .
 
 # copy key
 RUN mkdir -p ~/.ssh && cp /home/app/id_rsa ~/.ssh/id_rsa && cp /home/app/id_rsa.pub ~/.ssh/id_rsa.pub
-RUN chmod 0600 /home/app/id_rsa.pub && chmod 0600 ~/.ssh/id_rsa
+RUN chmod 0600 ~/.ssh/id_rsa.pub && chmod 0600 ~/.ssh/id_rsa
+RUN rm /home/app/id_rsa.pub && rm /home/app/id_rsa
 
 RUN g++ /home/app/main.cpp -o /home/app/main.o && chmod +x /home/app/main.o
 RUN git clone "$GIT_REPO" /home/repo
